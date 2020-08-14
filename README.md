@@ -2,7 +2,7 @@
 Bash interactive script for generating SSL certificates with OpenSSL. Designed for use with your own CA.
 
 ## How to download
-Download the certgen file in the root of the [repository](htttps://github.com/reesericci/certgen).
+Download the certgen file in the root of the [repository](https://github.com/reesericci/certgen).
 
 Then run `chmod a+x certgen` where you downloaded it.
 
