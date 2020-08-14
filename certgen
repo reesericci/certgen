@@ -26,8 +26,6 @@ read -ep "Where is the CA private key?: " cakey
 
 read -ep "How long would you like the cert to last? (in days): " -i "825" certexp
 
-echo $certexp
-
 echo "Generating certificate..."
 
 openssl x509 -req -in $dir/csr.csr -CA $cafile -CAkey $cakey -CAcreateserial \
