@@ -1,0 +1,32 @@
+#/bin/bash
+
+read -ep "What will be the path for the cert and other files?  " dir
+
+echo "Creating cert directory..."
+
+mkdir $dir
+
+echo "Generating Private Key..."
+
+openssl genrsa -out $dir/key.pem 2048
+
+echo "Generating CSR..."
+
+openssl req -new -key $dir/key.pem -out $dir/csr.csr
+
+read -ep "Where is the SAN file for this cert? " san
+
+echo "Moving SAN..."
+
+mv $san $dir/san.san
+
+read -ep  "Where is the CA file? " cafile
+
+read -ep "Where is the CA private key? " cakey
+
+echo "Generating certificate..."
+
+openssl x509 -req -in $dir/csr.csr -CA $cafile -CAkey $cakey -CAcreateserial \
+        -out $dir/crt.crt -days 825 -sha256 -extfile $dir/san.san
+
+echo "Done!"
